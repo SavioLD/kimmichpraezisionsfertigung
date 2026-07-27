@@ -52,7 +52,13 @@
       <div class="reveal">
         <div class="card" style="padding:2rem">
           <h2 style="font-size:1.5rem">Anfrage senden</h2>
-          <form class="form" data-demo novalidate>
+          <form class="form" id="anfrage-form" action="https://api.web3forms.com/submit" method="POST">
+            <!-- Web3Forms Access Key (öffentlich; Empfänger-Mail wird über web3forms.com bestätigt) -->
+            <input type="hidden" name="access_key" value="ef8b2f50-5a02-4d2d-a1f3-2f4890f24f55" />
+            <input type="hidden" name="subject" value="Neue Anfrage über die Website (Armin Kimmich Präzisionsfertigung)" />
+            <input type="hidden" name="from_name" value="Website Armin Kimmich Präzisionsfertigung" />
+            <!-- Spam-Schutz (Honeypot) – muss leer bleiben -->
+            <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none !important" aria-hidden="true" />
             <div class="form__row">
               <div class="field"><label for="name">Name *</label><input id="name" name="name" type="text" required autocomplete="name" /></div>
               <div class="field"><label for="firma">Firma</label><input id="firma" name="firma" type="text" autocomplete="organization" /></div>

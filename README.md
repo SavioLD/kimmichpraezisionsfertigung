@@ -19,7 +19,7 @@ Armin Kimmich Präzisionsfertigung – CNC-Fertigung mit Schwerpunkt Fräsen.
 ```
 ├─ *.html            – die einzelnen Seiten
 ├─ css/style.css     – Design-System (Inter, Akzent #1c9ce5)
-├─ js/main.js        – Mobile-Navigation, Scroll-Reveal, Demo-Formular
+├─ js/main.js        – Mobile-Navigation, Scroll-Reveal, Galerie-Lightbox, Kontaktformular
 └─ assets/           – Medien (Favicon vorhanden; Fotos/Logo offen)
 ```
 
@@ -41,8 +41,14 @@ Leistungen, Qualität, Branchen und Karriere. Weitere ungenutzte Motive
 
 ## Noch offen (Platzhalter)
 - Echte **Kontaktdaten** (Adresse/Telefon/E-Mail sind Platzhalter)
-- **Formular-Backend** – das Kontaktformular ist derzeit eine Demo ohne Versand
-- Optional: **Impressum** & **Datenschutz** verlinken
+- **Impressum** & **Datenschutz** – aktuell nur Platzhalter-Links (`#`)
+
+## Kontaktformular (Web3Forms)
+Das Formular auf `kontakt.html` sendet per AJAX an **Web3Forms**
+(`api.web3forms.com`). Der Access Key steht im `access_key`-Hidden-Feld
+(öffentlich, das ist so vorgesehen). Anfragen gehen an die bei Web3Forms
+hinterlegte Empfänger-Mail – **diese muss dort einmalig bestätigt werden**,
+sonst werden keine Mails zugestellt. Spam-Schutz via Honeypot-Feld `botcheck`.
 
 ## Veröffentlichung via GitHub Pages (optional)
 Settings → Pages → Branch `main` / `root`. Eine `.nojekyll`-Datei ist enthalten.

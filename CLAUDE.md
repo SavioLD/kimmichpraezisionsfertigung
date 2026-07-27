@@ -17,7 +17,15 @@ für einen CNC-Präzisionsfertiger mit Schwerpunkt **Fräsen**.
   `*.html` gepflegt werden.
 - Aktive Navigation: `class="is-active"` auf dem jeweiligen Menüpunkt.
 - `js/main.js`: mobile Navigation, Scroll-Reveal (`.reveal` → `.is-visible`),
-  Demo-Handler fürs Kontaktformular (`form[data-demo]`), Jahr im Footer (`[data-year]`).
+  Kontaktformular (`#anfrage-form`, sendet an Web3Forms), Galerie-Lightbox, Jahr im Footer.
+
+## Kontaktformular
+- `kontakt.html`: `<form id="anfrage-form" action="https://api.web3forms.com/submit">`.
+- `access_key`-Hidden-Feld = öffentlicher Web3Forms-Key; `subject`/`from_name` vorbelegt;
+  Honeypot-Feld `botcheck` (versteckt) gegen Spam.
+- `js/main.js` sendet per fetch/AJAX und zeigt Erfolg/Fehler in `.form__result`.
+  Ist der Key noch der Platzhalter (`DEIN-…`), erscheint stattdessen ein Hinweis.
+- Empfänger-Mail muss bei web3forms.com bestätigt sein, sonst keine Zustellung.
 
 ## Galerie
 - `galerie.html`: Raster (`.gallery` mit `data-gallery`) aus `<button data-full="X.jpg"><img …></button>`.

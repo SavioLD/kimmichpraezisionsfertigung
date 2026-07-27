@@ -37,17 +37,45 @@
     reveals.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
-  /* --- Kontaktformular (Platzhalter, kein Backend) --------------------- */
-  var form = document.querySelector('form[data-demo]');
+  /* --- Kontaktformular (Web3Forms) ------------------------------------- */
+  var form = document.querySelector('#anfrage-form');
   if (form) {
+    var result = form.querySelector('.form__result');
+    var setResult = function (msg, color) {
+      result.hidden = false;
+      result.style.color = color;
+      result.textContent = msg;
+    };
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var note = form.querySelector('.form__result');
-      if (note) {
-        note.hidden = false;
-        note.textContent = 'Vielen Dank! Dies ist eine Demo-Ansicht – bitte hinterlegen Sie ein Formular-Backend, damit Anfragen versendet werden.';
+      var keyField = form.querySelector('[name="access_key"]');
+      var key = keyField ? keyField.value : '';
+
+      // Noch nicht aktiviert (Platzhalter-Key)
+      if (!key || key.indexOf('DEIN-') === 0) {
+        setResult('Das Kontaktformular wird in Kürze freigeschaltet. Bitte erreichen Sie uns bis dahin telefonisch oder per E-Mail.', '#b45309');
+        return;
       }
-      form.reset();
+      // Browser-Validierung der Pflichtfelder
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      setResult('Wird gesendet …', 'var(--accent-dark)');
+      var data = new FormData(form);
+      fetch(form.action, {
+        method: 'POST', body: data, headers: { 'Accept': 'application/json' }
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (json) {
+          if (json.success) {
+            form.reset();
+            setResult('Vielen Dank! Ihre Anfrage wurde gesendet – wir melden uns zeitnah bei Ihnen.', 'var(--accent-dark)');
+          } else {
+            setResult('Leider ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt.', '#b91c1c');
+          }
+        })
+        .catch(function () {
+          setResult('Netzwerkfehler – bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt.', '#b91c1c');
+        });
     });
   }
 
