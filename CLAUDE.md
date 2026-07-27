@@ -19,6 +19,12 @@ für einen CNC-Präzisionsfertiger mit Schwerpunkt **Fräsen**.
 - `js/main.js`: mobile Navigation, Scroll-Reveal (`.reveal` → `.is-visible`),
   Demo-Handler fürs Kontaktformular (`form[data-demo]`), Jahr im Footer (`[data-year]`).
 
+## Galerie
+- `galerie.html`: Raster (`.gallery` mit `data-gallery`) aus `<button data-full="X.jpg"><img …></button>`.
+- Lightbox-Markup am Seitenende (`.lightbox` mit `data-lightbox`), Steuerung in `js/main.js`
+  (Klick öffnet, ×/Klick-außen schließt, ‹/› und Pfeiltasten blättern, Esc schließt).
+- Navigation hat dadurch 6 Punkte (…, Branchen, **Galerie**, Karriere) + CTA.
+
 ## Wiederkehrende Bausteine (CSS-Klassen)
 - `.section`, `.section--soft`, `.section--dark` – Abschnitte
 - `.container` – zentrierter Inhalt (max. 1180px)

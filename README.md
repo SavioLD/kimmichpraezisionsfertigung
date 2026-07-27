@@ -11,6 +11,7 @@ Armin Kimmich Präzisionsfertigung – CNC-Fertigung mit Schwerpunkt Fräsen.
 | `maschinenpark.html` | 5-Achs-Fräsmaschine, Fräswege (X 1.400 / Y 800 / Z 650), Automation |
 | `qualitaet-prozesse.html` | Fertigungsschritte: Fräsen → Erodieren → Oberflächen → Wärmebehandlung; Kooperationspartner |
 | `branchen.html` | Branchen / Anwendungen |
+| `galerie.html` | Bildergalerie mit Lightbox |
 | `karriere.html` | Karriere & offene Stellen |
 | `kontakt.html` | Kontaktdaten + Anfrageformular |
 

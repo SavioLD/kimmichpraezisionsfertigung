@@ -215,6 +215,38 @@ ul, ol { color: var(--ink-2); }
 }
 .split__media .media { aspect-ratio: 4 / 3; height: auto; }
 
+/* ---- Galerie ------------------------------------------------------------ */
+.gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+@media (max-width: 900px) { .gallery { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 620px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
+.gallery button {
+  padding: 0; border: 0; margin: 0; cursor: pointer; background: none;
+  border-radius: var(--radius-sm); overflow: hidden; display: block;
+  box-shadow: var(--shadow-sm); transition: transform .18s ease, box-shadow .2s ease;
+}
+.gallery button:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
+
+/* ---- Lightbox ----------------------------------------------------------- */
+.lightbox {
+  position: fixed; inset: 0; z-index: 100; display: none;
+  align-items: center; justify-content: center;
+  background: rgba(8, 14, 20, .92); padding: 4vw;
+}
+.lightbox.is-open { display: flex; }
+.lightbox img { max-width: 92vw; max-height: 86vh; border-radius: var(--radius-sm); box-shadow: var(--shadow-lg); }
+.lightbox__btn {
+  position: absolute; background: rgba(255,255,255,.12); color: #fff; border: 0;
+  width: 52px; height: 52px; border-radius: 50%; font-size: 1.6rem; cursor: pointer;
+  display: grid; place-items: center; transition: background .15s;
+}
+.lightbox__btn:hover { background: rgba(255,255,255,.25); }
+.lightbox__close { top: 18px; right: 18px; }
+.lightbox__prev { left: 18px; top: 50%; transform: translateY(-50%); }
+.lightbox__next { right: 18px; top: 50%; transform: translateY(-50%); }
+.lightbox__count { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; color: #b9c6d2; font-size: .9rem; }
+@media (max-width: 620px) { .lightbox__btn { width: 44px; height: 44px; } }
+
 /* ---- Spec table --------------------------------------------------------- */
 .spec {
   width: 100%; border-collapse: collapse; background: #fff;
