@@ -44,8 +44,16 @@ für einen CNC-Präzisionsfertiger mit Schwerpunkt **Fräsen**.
 - Weitere Varianten liegen im Repo-Root (Druck 20×6 / 50×14 cm als JPG/PNG).
 - Größe/Verhalten über `.brand__logo` in `css/style.css` steuerbar.
 
+## Bilder
+- Fotos liegen im Repo-Root (`001.jpg`–`041.jpg`, plus `040_himmel.jpg`).
+- Eingebunden via `<img class="media" …>` in den `.split__media`-Blöcken;
+  Startseiten-Hero nutzt `030.jpg` als abgedunkeltes Hintergrundbild (inline).
+- Verwendet: index 018/025 (+Hero 030), maschinenpark 019/024, leistungen 027,
+  qualitaet 008, branchen 028, karriere 013. Übrige Bilder = Reserve.
+- `.media`-Stil in `css/style.css` (Seitenverhältnis 4:3, object-fit cover).
+- `.ph` (schraffierter Platzhalter) bleibt für künftige neue Blöcke verfügbar.
+
 ## Noch offen / Platzhalter
-- Echte Fotos (`.ph`-Blöcke)
 - Echte Kontaktdaten (Adresse/Telefon/E-Mail in Footer & `kontakt.html`)
 - Formular-Backend (aktuell Demo ohne Versand)
 - Impressum/Datenschutz-Seiten (aktuell auf `#` verlinkt)

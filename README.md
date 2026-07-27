@@ -32,8 +32,13 @@ Einfach `index.html` im Browser öffnen – oder:
 python3 -m http.server 8000   # dann http://localhost:8000
 ```
 
+## Bilder
+Echte Fotos sind eingebunden (Dateien `001.jpg`–`041.jpg` im Repo-Root):
+Hero + Split-Blöcke der Startseite, Maschinenpark (5-Achs, Automation),
+Leistungen, Qualität, Branchen und Karriere. Weitere ungenutzte Motive
+(Gebäude, Rohmaterial, Team, Sägen, INDEX-Drehen …) stehen für Erweiterungen bereit.
+
 ## Noch offen (Platzhalter)
-- Echte **Fotos** – im Code als `.ph`-Blöcke markiert
 - Echte **Kontaktdaten** (Adresse/Telefon/E-Mail sind Platzhalter)
 - **Formular-Backend** – das Kontaktformular ist derzeit eine Demo ohne Versand
 - Optional: **Impressum** & **Datenschutz** verlinken

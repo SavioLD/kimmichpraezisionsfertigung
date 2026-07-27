@@ -208,6 +208,13 @@ ul, ol { color: var(--ink-2); }
 .ph--wide { aspect-ratio: 16/9; min-height: 0; }
 .ph span { background: rgba(255,255,255,.75); padding: .35rem .7rem; border-radius: 6px; }
 
+/* ---- Eingebundene Bilder ------------------------------------------------ */
+.media {
+  display: block; width: 100%; border-radius: var(--radius);
+  box-shadow: var(--shadow); object-fit: cover;
+}
+.split__media .media { aspect-ratio: 4 / 3; height: auto; }
+
 /* ---- Spec table --------------------------------------------------------- */
 .spec {
   width: 100%; border-collapse: collapse; background: #fff;
