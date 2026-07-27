@@ -38,8 +38,14 @@ für einen CNC-Präzisionsfertiger mit Schwerpunkt **Fräsen**.
 - Fertigungsschritte: Fräsen → **Erodieren** → **Oberflächenbehandlung** → **Wärmebehandlung**
 - Folgeprozesse teils **mit Kooperationspartnern**
 
+## Logo
+- Eingebunden in Header **und** Footer aller Seiten via
+  `<img class="brand__logo" src="logo_kimmich_transparent_web_567x162pixel.png" …>`.
+- Weitere Varianten liegen im Repo-Root (Druck 20×6 / 50×14 cm als JPG/PNG).
+- Größe/Verhalten über `.brand__logo` in `css/style.css` steuerbar.
+
 ## Noch offen / Platzhalter
-- Echte Fotos (`.ph`-Blöcke), echtes Logo (`.brand__mark` / `favicon.svg`)
+- Echte Fotos (`.ph`-Blöcke)
 - Echte Kontaktdaten (Adresse/Telefon/E-Mail in Footer & `kontakt.html`)
 - Formular-Backend (aktuell Demo ohne Versand)
 - Impressum/Datenschutz-Seiten (aktuell auf `#` verlinkt)

@@ -34,7 +34,6 @@ python3 -m http.server 8000   # dann http://localhost:8000
 
 ## Noch offen (Platzhalter)
 - Echte **Fotos** – im Code als `.ph`-Blöcke markiert
-- Echtes **Logo** (aktuell Buchstaben-Marke „K")
 - Echte **Kontaktdaten** (Adresse/Telefon/E-Mail sind Platzhalter)
 - **Formular-Backend** – das Kontaktformular ist derzeit eine Demo ohne Versand
 - Optional: **Impressum** & **Datenschutz** verlinken

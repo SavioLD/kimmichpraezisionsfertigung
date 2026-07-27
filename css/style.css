@@ -113,6 +113,10 @@ ul, ol { color: var(--ink-2); }
   box-shadow: 0 4px 12px rgba(28,156,229,.35);
 }
 .brand__sub { display: block; font-size: .72rem; font-weight: 500; color: var(--muted); letter-spacing: .02em; }
+.brand__logo { height: 42px; width: auto; display: block; }
+@media (max-width: 900px) { .brand__logo { height: 34px; } }
+.site-footer .brand { margin-bottom: .8rem; }
+.site-footer .brand__logo { height: 50px; }
 
 .nav__links { display: flex; align-items: center; gap: .35rem; list-style: none; margin: 0; padding: 0; }
 .nav__links a {
