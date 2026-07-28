@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anfrage-Konfigurator – Armin Kimmich Präzisionsfertigung</title>
+  <meta name="description" content="Stellen Sie Ihre Fertigungsanfrage in 60 Sekunden zusammen: Leistungen wählen, Werkstoff und Bauteilmaße angeben – inklusive sofortigem Machbarkeits-Check gegen unseren Maschinenpark." />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html"><img class="brand__logo" src="logo_kimmich_transparent_web_567x162pixel.png" alt="Armin Kimmich Präzisionsfertigung" width="567" height="162" /></a>
+      <button class="nav__toggle" aria-label="Menü" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="leistungen.html">Leistungen</a></li>
+        <li><a href="maschinenpark.html">Maschinenpark</a></li>
+        <li><a href="qualitaet-prozesse.html">Qualität &amp; Prozesse</a></li>
+        <li><a href="branchen.html">Branchen</a></li>
+        <li><a href="galerie.html">Galerie</a></li>
+        <li><a href="karriere.html">Karriere</a></li>
+        <li class="nav__cta"><a class="btn btn--primary" href="konfigurator.html">Anfrage stellen</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container page-hero__inner">
+      <div class="breadcrumb"><a href="index.html">Start</a> / Anfrage-Konfigurator</div>
+      <h1>Ihre Anfrage in 60&nbsp;Sekunden</h1>
+      <p>Wählen Sie die benötigten Leistungen und geben Sie Ihre Bauteildaten ein.
+         Wir prüfen sofort, ob Ihr Teil in unseren Arbeitsraum passt – und melden uns
+         mit einer belastbaren Einschätzung zurück.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <form id="konf-form" class="konf" action="https://api.web3forms.com/submit" method="POST" novalidate>
+        <input type="hidden" name="access_key" value="ef8b2f50-5a02-4d2d-a1f3-2f4890f24f55" />
+        <input type="hidden" name="subject" value="Neue Anfrage über den Konfigurator (Armin Kimmich Präzisionsfertigung)" />
+        <input type="hidden" name="from_name" value="Konfigurator – Armin Kimmich Präzisionsfertigung" />
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none !important" aria-hidden="true" />
+        <!-- Zusammenfassung für die E-Mail (wird per JS befüllt) -->
+        <input type="hidden" name="Zusammenfassung" id="k_summary" />
+
+        <div>
+          <!-- SCHRITT 1 -->
+          <div class="kstep">
+            <div class="kstep__head">
+              <div class="kstep__num">1</div>
+              <div>
+                <h3>Welche Leistungen brauchen Sie?</h3>
+                <p>Mehrfachauswahl möglich – wir bilden die komplette Prozesskette ab.</p>
+              </div>
+            </div>
+            <div class="picks" id="k-services">
+              <label class="pick"><input type="checkbox" value="Fräsen (5-Achs)" checked>
+                <span>Fräsen (5-Achs)<small>Unser Schwerpunkt</small></span></label>
+              <label class="pick"><input type="checkbox" value="Drehen">
+                <span>Drehen<small>konventionell &amp; CNC</small></span></label>
+              <label class="pick"><input type="checkbox" value="Schleifen">
+                <span>Schleifen<small>Flach- &amp; Rundschleifen</small></span></label>
+              <label class="pick"><input type="checkbox" value="Erodieren">
+                <span>Erodieren<small>Draht &amp; Senk</small></span></label>
+              <label class="pick"><input type="checkbox" value="Oberflächen / Wärmebehandlung">
+                <span>Oberflächen<small>inkl. Wärmebehandlung</small></span></label>
+              <label class="pick"><input type="checkbox" value="Baugruppen / Montage">
+                <span>Baugruppen<small>einbaufertig montiert</small></span></label>
+            </div>
+          </div>
+
+          <!-- SCHRITT 2 -->
+          <div class="kstep">
+            <div class="kstep__head">
+              <div class="kstep__num">2</div>
+              <div>
+                <h3>Werkstoff</h3>
+                <p>Gängige Werkstoffe halten wir ab Lager vorrätig.</p>
+              </div>
+            </div>
+            <div class="krow krow--2">
+              <div class="field">
+                <label for="k_material">Werkstoffgruppe</label>
+                <select class="select" id="k_material" name="Werkstoff">
+                  <option value="Stahl (St37K, 16MnCr5)">Stahl – St37K, 16MnCr5 (ab Lager)</option>
+                  <option value="Edelstahl (1.4301, 1.4305)">Edelstahl – 1.4301, 1.4305 (ab Lager)</option>
+                  <option value="Werkzeugstahl (1.2842, 1.2826)">Werkzeugstahl – 1.2842, 1.2826 (ab Lager)</option>
+                  <option value="Aluminium (AlCuMgPb, AlZnMgCu)">Aluminium – AlCuMgPb, AlZnMgCu hochfest</option>
+                  <option value="Kupfer / Messing / Bronze">Kupfer / Messing / Bronze</option>
+                  <option value="Anderer Werkstoff">Anderer Werkstoff / noch offen</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="k_material_text">Genaue Bezeichnung <span style="font-weight:500;color:var(--muted)">(optional)</span></label>
+                <input class="input" type="text" id="k_material_text" name="Werkstoff-Details" placeholder="z. B. 1.4301 oder Kundenvorgabe" />
+              </div>
+            </div>
+          </div>
+
+          <!-- SCHRITT 3 -->
+          <div class="kstep">
+            <div class="kstep__head">
+              <div class="kstep__num">3</div>
+              <div>
+                <h3>Bauteilmaße</h3>
+                <p>Wir prüfen sofort gegen unseren Arbeitsraum – Fräsen bis 1.400 × 800 × 650 mm.</p>
+              </div>
+            </div>
+            <div class="krow">
+              <div class="field"><label for="k_l">Länge (X)</label>
+                <div class="unitfield"><input class="input" type="number" id="k_l" name="Länge (mm)" min="0" step="1" inputmode="numeric" placeholder="z. B. 420"><span class="unit">mm</span></div></div>
+              <div class="field"><label for="k_b">Breite (Y)</label>
+                <div class="unitfield"><input class="input" type="number" id="k_b" name="Breite (mm)" min="0" step="1" inputmode="numeric" placeholder="z. B. 260"><span class="unit">mm</span></div></div>
+              <div class="field"><label for="k_h">Höhe (Z)</label>
+                <div class="unitfield"><input class="input" type="number" id="k_h" name="Höhe (mm)" min="0" step="1" inputmode="numeric" placeholder="z. B. 120"><span class="unit">mm</span></div></div>
+            </div>
+            <p class="hint">Bei Drehteilen: Länge = Teilelänge, Breite = Durchmesser (Höhe leer lassen).</p>
+          </div>
+
+          <!-- SCHRITT 4 -->
+          <div class="kstep">
+            <div class="kstep__head">
+              <div class="kstep__num">4</div>
+              <div>
+                <h3>Stückzahl &amp; Termin</h3>
+                <p>Besonders wirtschaftlich sind wir bei Losgrößen von 10 bis 50 Stück.</p>
+              </div>
+            </div>
+            <div class="krow">
+              <div class="field"><label for="k_qty">Stückzahl</label>
+                <div class="unitfield"><input class="input" type="number" id="k_qty" name="Stückzahl" min="1" step="1" value="25" inputmode="numeric"><span class="unit">Stk</span></div></div>
+              <div class="field"><label for="k_repeat">Bedarf</label>
+                <select class="select" id="k_repeat" name="Bedarf">
+                  <option value="Einmalig / Prototyp">Einmalig / Prototyp</option>
+                  <option value="Wiederkehrend" selected>Wiederkehrend (Serie)</option>
+                  <option value="Noch offen">Noch offen</option>
+                </select></div>
+              <div class="field"><label for="k_termin">Wunschtermin</label>
+                <select class="select" id="k_termin" name="Wunschtermin">
+                  <option value="So schnell wie möglich">So schnell wie möglich</option>
+                  <option value="Innerhalb 4 Wochen" selected>Innerhalb 4 Wochen</option>
+                  <option value="Innerhalb 3 Monaten">Innerhalb 3 Monaten</option>
+                  <option value="Terminlich flexibel">Terminlich flexibel</option>
+                </select></div>
+            </div>
+          </div>
+
+          <!-- SCHRITT 5 -->
+          <div class="kstep">
+            <div class="kstep__head">
+              <div class="kstep__num">5</div>
+              <div>
+                <h3>Anforderungen</h3>
+                <p>Je genauer die Angaben, desto belastbarer unsere Einschätzung.</p>
+              </div>
+            </div>
+            <div class="krow krow--2">
+              <div class="field"><label for="k_toleranz">Engste Toleranz</label>
+                <select class="select" id="k_toleranz" name="Toleranz">
+                  <option value="Standard (ISO 2768-m)">Standard (ISO 2768-m)</option>
+                  <option value="Fein (ISO 2768-f)">Fein (ISO 2768-f)</option>
+                  <option value="± 0,01 mm oder enger">± 0,01 mm oder enger</option>
+                  <option value="Noch offen">Noch offen</option>
+                </select></div>
+              <div class="field"><label for="k_zeichnung">Zeichnung / 3D-Daten</label>
+                <select class="select" id="k_zeichnung" name="Unterlagen">
+                  <option value="Zeichnung + 3D-Daten vorhanden" selected>Zeichnung + 3D-Daten vorhanden</option>
+                  <option value="Nur Zeichnung vorhanden">Nur Zeichnung vorhanden</option>
+                  <option value="Nur 3D-Daten vorhanden">Nur 3D-Daten vorhanden</option>
+                  <option value="Noch keine Unterlagen">Noch keine Unterlagen</option>
+                </select></div>
+            </div>
+            <div class="field" style="margin-top:1rem">
+              <label for="k_nachricht">Ihre Nachricht <span style="font-weight:500;color:var(--muted)">(optional)</span></label>
+              <textarea class="input" id="k_nachricht" name="Nachricht" placeholder="Besonderheiten, Oberflächengüte, Prüfanforderungen …"></textarea>
+            </div>
+          </div>
+
+          <!-- SCHRITT 6 -->
+          <div class="kstep">
+            <div class="kstep__head">
+              <div class="kstep__num">6</div>
+              <div>
+                <h3>Ihre Kontaktdaten</h3>
+                <p>Wir melden uns zeitnah mit einer Einschätzung zurück.</p>
+              </div>
+            </div>
+            <div class="krow krow--2">
+              <div class="field"><label for="k_name">Name *</label>
+                <input class="input" type="text" id="k_name" name="Name" autocomplete="name" required>
+                <div class="err-msg">Bitte Namen angeben.</div></div>
+              <div class="field"><label for="k_firma">Firma</label>
+                <input class="input" type="text" id="k_firma" name="Firma" autocomplete="organization"></div>
+              <div class="field"><label for="k_email">E-Mail *</label>
+                <input class="input" type="email" id="k_email" name="E-Mail" autocomplete="email" required>
+                <div class="err-msg">Bitte gültige E-Mail angeben.</div></div>
+              <div class="field"><label for="k_tel">Telefon</label>
+                <input class="input" type="tel" id="k_tel" name="Telefon" autocomplete="tel"></div>
+            </div>
+            <button class="btn btn--primary" type="submit" style="margin-top:1.2rem">Anfrage absenden</button>
+            <p class="form__note" style="margin-top:.8rem">* Pflichtfelder. Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Angaben
+              zur Bearbeitung der Anfrage zu – siehe <a href="datenschutz.html">Datenschutz</a>.</p>
+            <p class="form__result" role="status" hidden style="font-weight:600"></p>
+            <p class="hint">Lieber direkt schreiben? <a href="kontakt.html">Zum Kontaktformular</a> oder
+              <a href="tel:+49742250044">+49 (0)7422 500-44</a>.</p>
+          </div>
+        </div>
+
+        <!-- ERGEBNIS-PANEL -->
+        <aside class="kresult" id="k-result">
+          <h3>Ihre Anfrage im Überblick</h3>
+          <div class="kresult__row"><span>Leistungen</span><b id="r_services">Fräsen (5-Achs)</b></div>
+          <div class="kresult__row"><span>Werkstoff</span><b id="r_material">Stahl</b></div>
+          <div class="kresult__row"><span>Bauteilmaße</span><b id="r_size">–</b></div>
+          <div class="kresult__row"><span>Stückzahl</span><b id="r_qty">–</b></div>
+          <div style="margin-top:1rem">
+            <span style="font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700">Prozesskette</span>
+            <div class="kresult__chain" id="r_chain"></div>
+          </div>
+          <div id="r_status"></div>
+        </aside>
+      </form>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand"><a class="brand" href="index.html"><img class="brand__logo" src="logo_kimmich_transparent_web_567x162pixel.png" alt="Armin Kimmich Präzisionsfertigung" width="567" height="162" /></a><p>CNC-Präzisionsfertigung mit Schwerpunkt Fräsen – prozesssicher, teilautomatisiert, made in Germany.</p></div>
+        <div><h4>Leistungen</h4><ul><li><a href="leistungen.html">Fräsen</a></li><li><a href="leistungen.html">Drehen</a></li><li><a href="leistungen.html">Schleifen</a></li><li><a href="leistungen.html">Erodieren</a></li><li><a href="leistungen.html">Oberflächen</a></li></ul></div>
+        <div><h4>Unternehmen</h4><ul><li><a href="maschinenpark.html">Maschinenpark</a></li><li><a href="branchen.html">Branchen</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="karriere.html">Karriere</a></li><li><a href="konfigurator.html">Anfrage-Konfigurator</a></li><li><a href="kontakt.html">Kontakt</a></li></ul></div>
+        <div><h4>Kontakt</h4><ul><li>Armin Kimmich Präzisionsfertigung</li><li>Dr.-Konstantin-Hank-Straße 19 · 78713 Schramberg-Sulgen</li><li><a href="tel:+49742250044">+49 (0)7422 500-44</a></li><li><a href="mailto:info@kimmich-praezision.de">info@kimmich-praezision.de</a></li></ul></div>
+      </div>
+      <div class="footer__bottom">
+        <span>© <span data-year>2026</span> Armin Kimmich Präzisionsfertigung. Alle Rechte vorbehalten.</span>
+        <span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="agb.html">AGB</a></span>
+      </div>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+  <script src="js/konfigurator.js"></script>
+</body>
+</html>
