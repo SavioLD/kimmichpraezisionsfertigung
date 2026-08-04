@@ -428,3 +428,76 @@ ul, ol { color: var(--ink-2); }
 .err-msg { color:#b91c1c; font-size:.82rem; margin-top:.3rem; display:none; }
 .field.is-error .err-msg { display:block; }
 .field.is-error input, .field.is-error select { border-color:#b91c1c; }
+
+/* ==========================================================================
+   Angebots-Rechner (Positionen + Erstangebot)
+   ========================================================================== */
+.calc { display:grid; grid-template-columns:1fr 400px; gap:2rem; align-items:start; }
+@media (max-width:1050px){ .calc { grid-template-columns:1fr; } }
+
+/* Prototyp-Banner */
+.proto {
+  display:flex; gap:.8rem; align-items:flex-start;
+  background:#fff8e6; border:1px solid #f0d9a0; border-left:4px solid #e0a51e;
+  border-radius:var(--radius-sm); padding:1rem 1.2rem; margin-bottom:1.5rem;
+}
+.proto b { display:block; color:#7a5a06; }
+.proto p { margin:.2rem 0 0; font-size:.9rem; color:#7a5a06; }
+
+/* Position */
+.pos { background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+  box-shadow:var(--shadow-sm); margin-bottom:1rem; overflow:hidden; }
+.pos__head { display:flex; align-items:center; gap:.8rem; padding:.9rem 1.2rem;
+  background:var(--bg-soft); border-bottom:1px solid var(--line); }
+.pos__badge { width:28px; height:28px; flex:none; border-radius:50%; background:var(--accent);
+  color:#fff; font-weight:800; font-size:.85rem; display:grid; place-items:center; }
+.pos__title { font-weight:700; font-size:1rem; flex:1; }
+.pos__price { font-weight:800; color:var(--accent-dark); font-variant-numeric:tabular-nums; }
+.pos__del { background:none; border:0; cursor:pointer; color:var(--muted); font-size:1.35rem;
+  line-height:1; padding:.2rem .45rem; border-radius:6px; }
+.pos__del:hover { background:#fde8e8; color:#b91c1c; }
+.pos__body { padding:1.2rem; display:grid; gap:1rem; }
+
+.frow { display:grid; grid-template-columns:repeat(4,1fr); gap:.9rem; }
+@media (max-width:820px){ .frow { grid-template-columns:repeat(2,1fr); } }
+@media (max-width:480px){ .frow { grid-template-columns:1fr; } }
+.frow--3 { grid-template-columns:repeat(3,1fr); }
+@media (max-width:820px){ .frow--3 { grid-template-columns:1fr; } }
+.frow label { display:block; font-weight:600; font-size:.85rem; margin-bottom:.3rem; }
+.frow input, .frow select { width:100%; font:inherit; font-size:.95rem; padding:.6rem .7rem;
+  border:1.5px solid var(--line); border-radius:var(--radius-sm); background:#fff; color:var(--ink); }
+.frow input:focus, .frow select:focus { outline:none; border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(28,156,229,.15); }
+
+/* Zusatzleistungen als Chips */
+.addons { display:flex; flex-wrap:wrap; gap:.5rem; }
+.addon { cursor:pointer; }
+.addon input { position:absolute; opacity:0; width:0; height:0; }
+.addon span { display:inline-block; border:1.5px solid var(--line); border-radius:999px;
+  padding:.4rem .85rem; font-size:.85rem; font-weight:600; color:var(--ink-2); transition:.15s; }
+.addon:hover span { border-color:var(--accent); }
+.addon input:checked + span { background:var(--accent-light); border-color:var(--accent); color:var(--accent-dark); }
+
+.btn--add { background:var(--accent-light); color:var(--accent-dark); border:1.5px dashed var(--accent);
+  width:100%; justify-content:center; }
+.btn--add:hover { background:#d6ecfa; }
+
+/* Angebots-Panel */
+.quote { position:sticky; top:96px; background:var(--bg-dark); color:#dbe4ec;
+  border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-lg); }
+@media (max-width:1050px){ .quote { position:static; } }
+.quote__head { padding:1.4rem 1.5rem 1rem; }
+.quote__head h3 { color:#fff; font-size:1.05rem; margin:0; }
+.quote__head p { color:#8fa0af; font-size:.82rem; margin:.25rem 0 0; }
+.quote__total { padding:0 1.5rem 1.2rem; }
+.quote__amount { font-size:2.1rem; font-weight:800; color:#fff; letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums; line-height:1.1; }
+.quote__per { color:#8fa0af; font-size:.85rem; margin-top:.2rem; }
+.quote__lines { border-top:1px solid rgba(255,255,255,.1); padding:1rem 1.5rem; display:grid; gap:.5rem; }
+.quote__line { display:flex; justify-content:space-between; gap:1rem; font-size:.88rem; }
+.quote__line b { color:#fff; font-weight:600; font-variant-numeric:tabular-nums; }
+.quote__line--sum { border-top:1px solid rgba(255,255,255,.1); padding-top:.6rem; margin-top:.2rem; }
+.quote__foot { padding:0 1.5rem 1.5rem; }
+.quote__note { font-size:.78rem; color:#7d8b99; line-height:1.5; margin:.9rem 0 0; }
+.quote .btn { width:100%; justify-content:center; }
+.quote__empty { padding:1.5rem; color:#8fa0af; font-size:.9rem; text-align:center; }
