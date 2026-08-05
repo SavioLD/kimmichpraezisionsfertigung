@@ -47,6 +47,11 @@
   /* ---- Dateiliste --------------------------------------------------------- */
   var chosen = [];
 
+  /* Grenzen für den Versand (Web3Forms).
+     Bei Bedarf hier anpassen – der Nutzer bekommt sonst nur eine stumme Fehlermeldung. */
+  var MAX_DATEI = 5 * 1024 * 1024;    // 5 MB je Datei
+  var MAX_GESAMT = 15 * 1024 * 1024;  // 15 MB gesamt
+
   function fmtSize(b) {
     return b > 1048576 ? (b / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(b / 1024)) + ' KB';
   }
@@ -73,11 +78,22 @@
   }
 
   function addFiles(files) {
+    var abgelehnt = [];
     Array.prototype.forEach.call(files, function (f) {
       var dup = chosen.some(function (c) { return c.name === f.name && c.size === f.size; });
-      if (!dup) { chosen.push(f); }
+      if (dup) { return; }
+      if (f.size > MAX_DATEI) { abgelehnt.push(f.name + ' (zu groß)'); return; }
+      chosen.push(f);
     });
+    // Gesamtgröße begrenzen
+    while (chosen.reduce(function (a, f) { return a + f.size; }, 0) > MAX_GESAMT && chosen.length > 1) {
+      abgelehnt.push(chosen.pop().name + ' (Gesamtgröße überschritten)');
+    }
     syncInput(); renderFiles(); render();
+    if (abgelehnt.length) {
+      say('Nicht übernommen: ' + abgelehnt.join(', ') +
+          '. Max. 5 MB je Datei, 15 MB gesamt – größere Dateien bitte per E-Mail nachreichen.', '#b45309');
+    }
   }
 
   fileInput.addEventListener('change', function () { addFiles(fileInput.files); });
@@ -163,9 +179,17 @@
     if (!ok) { say('Bitte prüfen Sie die markierten Felder.', '#b91c1c'); return; }
 
     document.getElementById('f_positionen').value = summary();
-    say('Wird gesendet …', 'var(--accent-dark)');
+    say(chosen.length ? 'Anfrage und Unterlagen werden gesendet …' : 'Wird gesendet …', 'var(--accent-dark)');
 
-    fetch(form.action, { method: 'POST', body: new FormData(form) })
+    /* FormData aufbauen: Dateien einzeln benennen (attachment, attachment_2, …),
+       damit nicht nur die erste Datei ankommt. */
+    var data = new FormData(form);
+    data.delete('attachment');
+    chosen.forEach(function (f, i) {
+      data.append(i === 0 ? 'attachment' : 'attachment_' + (i + 1), f, f.name);
+    });
+
+    fetch(form.action, { method: 'POST', body: data })
       .then(function (r) { return r.json(); })
       .then(function (j) {
         if (j.success) {
