@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Angebots-Rechner – Armin Kimmich Präzisionsfertigung</title>
-  <meta name="description" content="Stellen Sie Ihre Teile zusammen und erhalten Sie sofort ein unverbindliches Erstangebot: Leistung, Werkstoff, Maße und Stückzahl eingeben – inklusive Machbarkeits-Check gegen unseren Maschinenpark." />
+  <title>Fertigungsanfrage – Armin Kimmich Präzisionsfertigung</title>
+  <meta name="description" content="Fertigungsanfrage stellen: Menge angeben, Zeichnung als PDF und STEP-Modell hochladen – wir erstellen Ihnen daraus ein Angebot." />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -27,86 +27,85 @@
 
   <section class="page-hero">
     <div class="container page-hero__inner">
-      <div class="breadcrumb"><a href="index.html">Start</a> / Angebots-Rechner</div>
-      <h1>Ihr unverbindliches Erstangebot</h1>
-      <p>Stellen Sie Ihre Teile zusammen – Leistung, Werkstoff, Maße und Stückzahl.
-         Sie sehen sofort eine Preisspanne und ob Ihr Bauteil in unseren Arbeitsraum passt.
-         Anschließend senden Sie die Anfrage mit einem Klick an uns.</p>
+      <div class="breadcrumb"><a href="index.html">Start</a> / Fertigungsanfrage</div>
+      <h1>Fertigungsanfrage stellen</h1>
+      <p>Sie brauchen nur zwei Dinge: die Stückzahl und Ihre Zeichnung.
+         Anhand von Zeichnung und 3D-Modell erstellen wir Ihnen ein Angebot.</p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-
-      <div class="proto">
-        <div style="font-size:1.3rem;line-height:1">🛠️</div>
-        <div>
-          <b>Prototyp – Preise sind noch Platzhalter</b>
-          <p>Alle Stundensätze, Materialpreise und Zuschläge stehen zentral in einer Datei
-             (<code>js/preise.js</code>) und werden vor dem Livegang durch die echten Werte ersetzt.
-             Die Rechenlogik selbst ist fertig.</p>
-        </div>
-      </div>
-
-      <form id="calc-form" class="calc" action="https://api.web3forms.com/submit" method="POST" novalidate>
+      <form id="calc-form" class="calc" action="https://api.web3forms.com/submit" method="POST"
+            enctype="multipart/form-data" novalidate>
         <input type="hidden" name="access_key" value="ef8b2f50-5a02-4d2d-a1f3-2f4890f24f55" />
-        <input type="hidden" name="subject" value="Neue Anfrage über den Angebots-Rechner (Armin Kimmich Präzisionsfertigung)" />
-        <input type="hidden" name="from_name" value="Angebots-Rechner – Armin Kimmich Präzisionsfertigung" />
+        <input type="hidden" name="subject" value="Neue Fertigungsanfrage über die Website (Armin Kimmich Präzisionsfertigung)" />
+        <input type="hidden" name="from_name" value="Fertigungsanfrage – Armin Kimmich Präzisionsfertigung" />
         <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none !important" aria-hidden="true" />
         <input type="hidden" name="Positionen" id="f_positionen" />
-        <input type="hidden" name="Erstangebot" id="f_summe" />
 
         <!-- LINKE SPALTE -->
         <div>
-          <!-- POSITIONEN -->
+          <!-- 1 · TEILE UND MENGE -->
           <div class="kstep">
             <div class="kstep__head">
               <div class="kstep__num">1</div>
               <div>
-                <h3>Ihre Teile</h3>
-                <p>Legen Sie für jedes Bauteil eine Position an – beliebig viele.</p>
+                <h3>Teile und Stückzahl</h3>
+                <p>Bezeichnung und Menge – mehr brauchen wir an dieser Stelle nicht.</p>
               </div>
             </div>
             <div id="positions"></div>
-            <button type="button" class="btn btn--add" id="add-pos" style="margin-top:.5rem">＋ Weitere Position hinzufügen</button>
+            <button type="button" class="btn btn--add" id="add-pos" style="margin-top:.5rem">＋ Weiteres Teil hinzufügen</button>
           </div>
 
-          <!-- TERMIN -->
+          <!-- 2 · UNTERLAGEN -->
           <div class="kstep">
             <div class="kstep__head">
               <div class="kstep__num">2</div>
               <div>
-                <h3>Termin</h3>
-                <p>Wann brauchen Sie die Teile?</p>
+                <h3>Zeichnung &amp; 3D-Modell</h3>
+                <p>PDF-Zeichnung und STEP-Modell hochladen – daraus kalkulieren wir Ihr Angebot.</p>
               </div>
             </div>
-            <div class="frow frow--3">
-              <div>
-                <label for="f_termin">Liefertermin</label>
-                <select id="f_termin" name="Liefertermin"></select>
+
+            <label class="dropzone" id="dropzone">
+              <input type="file" id="f_files" name="attachment" multiple
+                     accept=".pdf,.step,.stp,.stl,.dxf,.dwg,.igs,.iges,.zip" />
+              <div class="dropzone__inner">
+                <div class="dropzone__icon">📎</div>
+                <b>Dateien auswählen oder hierher ziehen</b>
+                <span>PDF · STEP / STP · DXF · IGES · ZIP — mehrere Dateien möglich</span>
               </div>
-              <div>
-                <label for="f_datum">Wunschdatum <span style="font-weight:500;color:var(--muted)">(optional)</span></label>
-                <input type="date" id="f_datum" name="Wunschdatum">
-              </div>
-              <div>
-                <label for="f_bedarf">Bedarf</label>
-                <select id="f_bedarf" name="Bedarf">
-                  <option>Einmalig / Prototyp</option>
-                  <option selected>Wiederkehrend (Serie)</option>
-                  <option>Rahmenauftrag</option>
-                </select>
-              </div>
-            </div>
+            </label>
+            <ul class="filelist" id="filelist"></ul>
+            <p class="hint">Noch keine Zeichnung zur Hand? Kein Problem – senden Sie die Anfrage
+               trotzdem ab und reichen Sie die Unterlagen später per E-Mail nach.</p>
           </div>
 
-          <!-- KONTAKT -->
+          <!-- 3 · BEMERKUNGEN -->
           <div class="kstep">
             <div class="kstep__head">
               <div class="kstep__num">3</div>
               <div>
+                <h3>Bemerkungen</h3>
+                <p>Alles, was wir für die Kalkulation wissen sollten.</p>
+              </div>
+            </div>
+            <div class="field">
+              <label for="f_nachricht">Ihre Angaben <span style="font-weight:500;color:var(--muted)">(optional)</span></label>
+              <textarea class="input" id="f_nachricht" name="Bemerkungen" style="min-height:150px"
+                        placeholder="z. B. Wunschliefertermin, Zusatzleistungen (Härten, Beschichten, Messprotokoll) oder Abweichungen zur Zeichnung …"></textarea>
+            </div>
+          </div>
+
+          <!-- 4 · KONTAKT -->
+          <div class="kstep">
+            <div class="kstep__head">
+              <div class="kstep__num">4</div>
+              <div>
                 <h3>Ihre Kontaktdaten</h3>
-                <p>Wir prüfen Ihre Anfrage und melden uns mit einem verbindlichen Angebot.</p>
+                <p>Wir melden uns mit Ihrem Angebot zurück.</p>
               </div>
             </div>
             <div class="frow">
@@ -121,33 +120,31 @@
               <div class="field"><label for="f_tel">Telefon</label>
                 <input type="tel" id="f_tel" name="Telefon" autocomplete="tel"></div>
             </div>
-            <div style="margin-top:1rem">
-              <label for="f_nachricht" style="display:block;font-weight:600;font-size:.85rem;margin-bottom:.3rem">Ihre Nachricht <span style="font-weight:500;color:var(--muted)">(optional)</span></label>
-              <textarea class="input" id="f_nachricht" name="Nachricht" placeholder="Zeichnungen, Prüfanforderungen, Besonderheiten …"></textarea>
-            </div>
             <p class="form__note" style="margin-top:.9rem">* Pflichtfelder. Mit dem Absenden stimmen Sie der Verarbeitung Ihrer Angaben
               zur Bearbeitung der Anfrage zu – siehe <a href="datenschutz.html">Datenschutz</a>.</p>
             <p class="form__result" role="status" hidden style="font-weight:600"></p>
           </div>
         </div>
 
-        <!-- ANGEBOTS-PANEL -->
+        <!-- ÜBERSICHT -->
         <aside class="quote">
           <div class="quote__head">
-            <h3>Unverbindliches Erstangebot</h3>
-            <p>Automatisch berechnet – live aktualisiert</p>
-          </div>
-          <div class="quote__total">
-            <div class="quote__amount" id="q_amount">–</div>
-            <div class="quote__per" id="q_per"></div>
+            <h3>Ihre Anfrage im Überblick</h3>
+            <p>Aktualisiert sich während der Eingabe</p>
           </div>
           <div class="quote__lines" id="q_lines"></div>
-          <div id="q_status" style="padding:0 1.5rem"></div>
           <div class="quote__foot">
-            <button class="btn btn--primary" type="submit">Angebot anfragen</button>
-            <p class="quote__note">Unverbindliche Schätzung auf Basis Ihrer Angaben – kein
-              rechtsverbindliches Angebot. Das finale Angebot erstellen wir nach Prüfung
-              Ihrer Zeichnung. Alle Preise zzgl. MwSt.</p>
+            <div style="margin-bottom:1.2rem">
+              <span style="font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700">So geht es weiter</span>
+              <ol class="nextsteps">
+                <li>Wir prüfen Zeichnung und Modell auf Machbarkeit.</li>
+                <li>Sie erhalten Ihr Angebot – in der Regel innerhalb weniger Arbeitstage.</li>
+                <li>Nach Ihrer Freigabe starten wir die Fertigung.</li>
+              </ol>
+            </div>
+            <button class="btn btn--primary" type="submit">Anfrage absenden</button>
+            <p class="quote__note">Ihre Unterlagen behandeln wir vertraulich und verwenden sie
+              ausschließlich zur Angebotserstellung.</p>
           </div>
         </aside>
       </form>
@@ -158,8 +155,8 @@
     <div class="container">
       <div class="footer__grid">
         <div class="footer__brand"><a class="brand" href="index.html"><img class="brand__logo" src="logo_kimmich_transparent_web_567x162pixel.png" alt="Armin Kimmich Präzisionsfertigung" width="567" height="162" /></a><p>CNC-Präzisionsfertigung mit Schwerpunkt Fräsen – prozesssicher, teilautomatisiert, made in Germany.</p></div>
-        <div><h4>Leistungen</h4><ul><li><a href="leistungen.html">Fräsen</a></li><li><a href="leistungen.html">Drehen</a></li><li><a href="leistungen.html">Schleifen</a></li><li><a href="leistungen.html">Erodieren</a></li><li><a href="leistungen.html">Oberflächen</a></li></ul></div>
-        <div><h4>Unternehmen</h4><ul><li><a href="maschinenpark.html">Maschinenpark</a></li><li><a href="branchen.html">Branchen</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="karriere.html">Karriere</a></li><li><a href="konfigurator.html">Angebots-Rechner</a></li><li><a href="kontakt.html">Kontakt</a></li></ul></div>
+        <div><h4>Leistungen</h4><ul><li><a href="leistungen.html">Fräsen</a></li><li><a href="leistungen.html">Drehen</a></li><li><a href="leistungen.html">Schleifen</a></li><li><a href="leistungen.html">Erodieren</a></li><li><a href="leistungen.html">Oberflächen</a></li><li><a href="werkstoff-bestellung.html">Werkstoff-Bestellung</a></li></ul></div>
+        <div><h4>Unternehmen</h4><ul><li><a href="maschinenpark.html">Maschinenpark</a></li><li><a href="branchen.html">Branchen</a></li><li><a href="galerie.html">Galerie</a></li><li><a href="karriere.html">Karriere</a></li><li><a href="konfigurator.html">Fertigungsanfrage</a></li><li><a href="kontakt.html">Kontakt</a></li></ul></div>
         <div><h4>Kontakt</h4><ul><li>Armin Kimmich Präzisionsfertigung</li><li>Dr.-Konstantin-Hank-Straße 19 · 78713 Schramberg-Sulgen</li><li><a href="tel:+49742250044">+49 (0)7422 500-44</a></li><li><a href="mailto:info@kimmich-praezision.de">info@kimmich-praezision.de</a></li></ul></div>
       </div>
       <div class="footer__bottom">
@@ -169,7 +166,6 @@
     </div>
   </footer>
   <script src="js/main.js"></script>
-  <script src="js/preise.js"></script>
   <script src="js/konfigurator.js"></script>
 </body>
 </html>

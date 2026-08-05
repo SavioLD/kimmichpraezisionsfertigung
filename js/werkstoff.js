@@ -7,7 +7,7 @@
   var note = form.querySelector('.form__result');
   function say(msg, color) { note.hidden = false; note.style.color = color; note.textContent = msg; }
 
-  var PFLICHT = ['w_gruppe', 'w_werkstoff', 'w_menge', 'w_masse', 'w_firma', 'w_name', 'w_email'];
+  var PFLICHT = ['w_menge', 'w_werkstoff', 'w_masse', 'w_firma', 'w_name', 'w_email'];
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
